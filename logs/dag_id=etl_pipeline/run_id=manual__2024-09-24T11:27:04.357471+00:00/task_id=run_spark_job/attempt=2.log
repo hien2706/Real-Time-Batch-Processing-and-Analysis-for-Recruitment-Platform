@@ -1,0 +1,88 @@
+[2024-09-24T11:27:22.261+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-09-24T11:27:22.275+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.run_spark_job manual__2024-09-24T11:27:04.357471+00:00 [queued]>
+[2024-09-24T11:27:22.284+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.run_spark_job manual__2024-09-24T11:27:04.357471+00:00 [queued]>
+[2024-09-24T11:27:22.285+0000] {taskinstance.py:2865} INFO - Starting attempt 2 of 2
+[2024-09-24T11:27:22.312+0000] {taskinstance.py:2888} INFO - Executing <Task(BashOperator): run_spark_job> on 2024-09-24 11:27:04.357471+00:00
+[2024-09-24T11:27:22.320+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'run_spark_job', 'manual__2024-09-24T11:27:04.357471+00:00', '--job-id', '562', '--raw', '--subdir', 'DAGS_FOLDER/hien_dag.py', '--cfg-path', '/tmp/tmp4e3rcd0j']
+[2024-09-24T11:27:22.323+0000] {standard_task_runner.py:105} INFO - Job 562: Subtask run_spark_job
+[2024-09-24T11:27:22.323+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=283) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-09-24T11:27:22.324+0000] {standard_task_runner.py:72} INFO - Started process 284 to run task
+[2024-09-24T11:27:22.388+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.run_spark_job manual__2024-09-24T11:27:04.357471+00:00 [running]> on host 743e8496d9f7
+[2024-09-24T11:27:22.466+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='run_spark_job' AIRFLOW_CTX_EXECUTION_DATE='2024-09-24T11:27:04.357471+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-09-24T11:27:04.357471+00:00'
+[2024-09-24T11:27:22.467+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-09-24T11:27:22.485+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-09-24T11:27:22.486+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'spark-submit --packages com.datastax.spark:spark-cassandra-connector_2.12:3.5.1,mysql:mysql-connector-java:8.0.32 /app/spark_job/ETL_pipeline.py']
+[2024-09-24T11:27:22.497+0000] {subprocess.py:86} INFO - Output:
+[2024-09-24T11:27:22.499+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: spark-submit: command not found
+[2024-09-24T11:27:22.500+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2024-09-24T11:27:22.508+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 249, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2024-09-24T11:27:22.513+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=etl_pipeline, task_id=run_spark_job, run_id=manual__2024-09-24T11:27:04.357471+00:00, execution_date=20240924T112704, start_date=20240924T112722, end_date=20240924T112722
+[2024-09-24T11:27:22.538+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-09-24T11:27:22.539+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 562 for task run_spark_job (Bash command failed. The command returned a non-zero exit code 127.; 284)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 249, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2024-09-24T11:27:22.589+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-09-24T11:27:22.601+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-09-24T11:27:22.602+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
