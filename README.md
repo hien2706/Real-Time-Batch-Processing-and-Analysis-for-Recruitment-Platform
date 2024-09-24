@@ -5,8 +5,12 @@ This project established a robust and scalable data engineering pipeline for the
 
 Real-time log data was ingested via Kafka, stored in Cassandra, and transformed/loaded into MySQL using scheduled PySpark ETL jobs orchestrated by Airflow. Change Data Capture ensured data consistency. The entire pipeline was containerized with Docker for easy deployment and scalability.
 
-**Technologies used**: Kafka, Cassandra, PySpark, MySQL, Airflow, Python, Docker
+**Technologies used**: Kafka, Cassandra, PySpark, MySQL, Airflow, Python, Docker\
 
-# Architecture
-
+**Architecture**
 ![project-pipeline](https://github.com/hien2706/Near-real-time-Log-Data-Processing-and-Analysis-for-Recruitment-Platform/blob/main/images/pipeline-architecture.jpg)
+
+# Project details
+## Ingestion
+## ETL
+## Visualization
