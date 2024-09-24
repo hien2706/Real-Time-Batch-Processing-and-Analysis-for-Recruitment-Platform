@@ -9,4 +9,4 @@ Technologies used: Kafka, Cassandra, PySpark, MySQL, Airflow, Python, Docker
 
 # Architecture
 
-![project-pipeline][https://github.com/hien2706/Near-real-time-Log-Data-Processing-and-Analysis-for-Recruitment-Platform/blob/main/images/pipeline-architecture.jpg]
+![project-pipeline](https://github.com/hien2706/Near-real-time-Log-Data-Processing-and-Analysis-for-Recruitment-Platform/blob/main/images/pipeline-architecture.jpg)
