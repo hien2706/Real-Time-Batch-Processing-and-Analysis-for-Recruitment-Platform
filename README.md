@@ -11,7 +11,7 @@ This project built a near-real-time data pipeline to ingest, process, and analyz
 
 Real-time log data was ingested via Kafka, stored in Cassandra, and transformed/loaded into MySQL using scheduled PySpark ETL jobs orchestrated by Airflow. Change Data Capture ensured data consistency. The entire pipeline was containerized with Docker for easy deployment and scalability.
 
-# Project details
+# ETL Pipeline
 ## Ingestion
 Raw log data is ingested into Cassandra through Kafka using streaming
 ## ETL
@@ -74,7 +74,7 @@ After Transformation:
 | spend_hour               | double   |
 | sources                  | text     |
 
-CDC mechanisms were implemented to efficiently identify and propagate updates from Cassandra to MySQL
+CDC mechanisms were implemented to efficiently identify and propagate updates from Cassandra to MySQL by continously checking latest update time between Cassandra and MySQL.
 
 ## Visualization
 Dashboard is created using Grafana connect to MySQL for anaylytical purpose and monitoring
