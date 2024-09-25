@@ -13,8 +13,10 @@ Real-time log data was ingested via Kafka, stored in Cassandra, and transformed/
 
 # ETL Pipeline
 ## Ingestion
-Raw log data is ingested into Cassandra through Kafka using streaming
+Raw log data is continuously captured and streamed into Kafka topics, providing a highly scalable and fault-tolerant ingestion mechanism. 
 ## ETL
+PySpark ETL jobs extract raw log data from Cassandra, perform transformations, and load the processed data into MySQL for efficient querying and reporting.
+
 Transformation logic: 
 - calculate click rate , conversion rate, disqualified applications, qualified applications for each hour, job_id, publisher_id, campaign_id, group_id
 - Caculating bit_set and spend_hour for clicks
@@ -74,8 +76,8 @@ After Transformation:
 | spend_hour               | double   |
 | sources                  | text     |
 
-CDC mechanisms were implemented to efficiently identify and propagate updates from Cassandra to MySQL by continously checking latest update time between Cassandra and MySQL.
+Change Data Capture (CDC) mechanisms were implemented to continuously monitor Cassandra for updates and efficiently propagate those changes to MySQL, ensuring data consistency between the two databases.
 
 ## Visualization
-Dashboard is created using Grafana connect to MySQL for anaylytical purpose and monitoring
+ A Grafana dashboard connected to MySQL provides near real-time visualizations and monitoring
 ![grafana-dashboard](https://github.com/hien2706/Near-real-time-Log-Data-Processing-and-Analysis-for-Recruitment-Platform/blob/main/images/grafana-dashboard.jpg)
