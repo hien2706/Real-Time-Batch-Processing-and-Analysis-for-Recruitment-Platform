@@ -76,7 +76,7 @@ After Transformation:
 | spend_hour               | double   |
 | sources                  | text     |
 
-Change Data Capture (CDC) mechanisms were implemented to continuously monitor Cassandra for updates and efficiently propagate those changes to MySQL, ensuring data consistency between the two databases.
+Change Data Capture (CDC) was implemented by continuously comparing the maximum ts timestamp from Cassandra with the maximum updated_at timestamp from MySQL. If Cassandra's ts is later, the corresponding data is transformed and loaded into MySQL, ensuring data consistency.
 
 ## Visualization
  A Grafana dashboard connected to MySQL provides near real-time visualizations and monitoring
