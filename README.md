@@ -13,7 +13,14 @@ Real-time log data was ingested via Kafka, stored in Cassandra, and transformed/
 
 # Project details
 ## Ingestion
+Raw log data is ingested into Cassandra through Kafka using streaming
 ## ETL
+Transformation logic: 
+- calculate click rate , conversion rate, disqualified applications, qualified applications for each hour, job_id, publisher_id, campaign_id, group_id
+- Caculating bit_set and spend_hour for clicks
+
+Before transformation:
+
 | Column          | Datatype |
 |-----------------|----------|
 | create_time     | text     |
@@ -46,6 +53,7 @@ Real-time log data was ingested via Kafka, stored in Cassandra, and transformed/
 | v               | int      |
 | vp              | text     |
 
+After Transformation:
 
 | Column                  | Datatype |
 |--------------------------|----------|
@@ -65,4 +73,8 @@ Real-time log data was ingested via Kafka, stored in Cassandra, and transformed/
 | impressions              | text     |
 | spend_hour               | double   |
 | sources                  | text     |
+
+CDC mechanisms were implemented to efficiently identify and propagate updates from Cassandra to MySQL
+
 ## Visualization
+
