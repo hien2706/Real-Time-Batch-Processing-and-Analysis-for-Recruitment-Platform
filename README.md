@@ -2,7 +2,7 @@
 
 # Project Overview
 ## Introduction
-This project established a robust and scalable data engineering pipeline for the continuous ingestion, processing, and storage of log data in near real-time, laying the foundation for future analytics and insights on a recruitment platform.
+This project built a near-real-time data pipeline to ingest, process, and analyze log data, laying the foundation for future analytics and insights on a recruitment platform.
 
 **Technologies used**: Kafka, Cassandra, PySpark, MySQL, Airflow, Python, Docker
 
