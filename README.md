@@ -77,4 +77,5 @@ After Transformation:
 CDC mechanisms were implemented to efficiently identify and propagate updates from Cassandra to MySQL
 
 ## Visualization
-
+Dashboard is created using Grafana connect to MySQL for anaylytical purpose and monitoring
+![grafana-dashboard](https://github.com/hien2706/Near-real-time-Log-Data-Processing-and-Analysis-for-Recruitment-Platform/blob/main/images/grafana-dashboard.jpg)
