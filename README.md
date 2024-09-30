@@ -1,4 +1,4 @@
-# Near-real-time-Log-Data-Processing-and-Analysis-for-Recruitment-Platform
+# Real-Time-Batch-Processing-and-Analysis-for-Recruitment-Platform
 
 # Project Overview
 ## Introduction
