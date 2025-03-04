@@ -1,0 +1,59 @@
+docker cp //home/hien2706/hien_data/project-class-de/tracking_v1.csv 7abea9e26edc:/var/lib/cassandra/data/tracking_v1.csv
+COPY my_keyspace.tracking FROM '/var/lib/cassandra/data/tracking_v1.csv' WITH HEADER = TRUE AND DELIMITER = '|';
+
+
+Access the Mounted Directory Inside the Container
+docker exec -it pyspark /bin/bash
+cd /app/spark_job
+ls
+
+Submit Spark Jobs
+
+docker exec pyspark spark-submit --packages com.datastax.spark:spark-cassandra-connector_2.12:3.5.1,mysql:mysql-connector-java:8.0.32 /app/spark_job/ETL_pipeline.py
+
+
+
+
+
+#Rebuild and Start the Containers
+docker-compose down --volumes
+docker-compose build
+docker-compose up -d
+
+version: 
+spark-submit --version : 3.5.2
+cqlsh> show VERSION; : Cassandra 4.1.6 
+
+
+CREATE KEYSPACE de_project
+  WITH REPLICATION = { 
+   'class' : 'SimpleStrategy', 
+   'replication_factor' : 1 
+  };
+  
+  
+streaming data pipeline with kafka:
+
+create topic:
+docker-compose exec kafka kafka-topics --create --topic TrackingTopic --bootstrap-server kafka:29092 --partitions 1 --replication-factor 1
+
+list all topics:
+docker-compose exec kafka kafka-topics --list --bootstrap-server kafka:29092
+
+get details:
+docker-compose exec kafka kafka-topics --describe --topic TrackingTopic --bootstrap-server kafka:29092
+
+delete topic:
+docker-compose exec kafka kafka-topics --delete --topic TrackingTopic --bootstrap-server kafka:29092
+
+
+running script:
+docker-compose exec python-source python /app/python-scripts/source.py
+docker-compose exec python-sink python /app/python-scripts/sink.py
+
+
+consumer:
+docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic TrackingTopic --from-beginning
+
+producer:
+docker-compose exec kafka kafka-console-producer --broker-list kafka:29092 --topic TrackingTopic
